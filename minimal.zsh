@@ -139,7 +139,7 @@ function mnml_uhp {
 
 function mnml_ssh {
     if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-        printf '%b' "$(hostname -s)"
+        printf '%b' "%F{226}$(hostname -s)"
     fi
 }
 
