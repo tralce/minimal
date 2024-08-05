@@ -16,6 +16,15 @@ MNML_BGJOB_MODE=${MNML_BGJOB_MODE:-4}
 
 
 # Components
+
+function mnml_ranger {
+  local rlv=${RANGER_LEVEL:-0}
+  if [ $rlv -gt 0 ]
+  then
+    printf '%b' "%F{226}[$RANGER_LEVEL]"
+  fi
+}
+
 function mnml_status {
     local okc="$MNML_OK_COLOR"
     local errc="$MNML_ERR_COLOR"
