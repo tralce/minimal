@@ -3,7 +3,7 @@ MNML_OK_COLOR="${MNML_OK_COLOR:-2}"
 MNML_ERR_COLOR="${MNML_ERR_COLOR:-1}"
 
 MNML_USER_CHAR="${MNML_USER_CHAR:-λ}"
-MNML_INSERT_CHAR="${MNML_INSERT_CHAR:-›}"
+MNML_INSERT_CHAR="%F{197}${MNML_INSERT_CHAR:-›}"
 MNML_NORMAL_CHAR="${MNML_NORMAL_CHAR:-·}"
 MNML_ELLIPSIS_CHAR="${MNML_ELLIPSIS_CHAR:-..}"
 MNML_BGJOB_MODE=${MNML_BGJOB_MODE:-4}
@@ -129,12 +129,24 @@ function mnml_hg_no_color {
 }
 
 function mnml_uhp {
+    if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ];then
+      local _hc="%F{202}"
+    else
+      local _hc="%F{84}"
+    fi
+
+    if [ $UID -eq 0 ];then
+      local _uc="%F{196}"
+    else
+      local _uc="%F{84}"
+    fi
     local _w="%{\e[0m%}"
     local _g="%{\e[38;5;244m%}"
+    local _se="%F{99}"
     local cwd="%~"
     cwd="${(%)cwd}"
 
-    printf '%b' "$_g%n$_w@$_g%m$_w:$_g${cwd//\//$_w/$_g}$_w"
+    printf '%b' "$_uc%n$_se@$_hc%m $_g${cwd//\//$_se/$_g}$_w"
 }
 
 function mnml_ssh {
