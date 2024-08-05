@@ -1,3 +1,4 @@
+A fork of https://github.com/subnixr/minimal for my own modifications.
 # MINIMAL
 A minimal and extensible zsh theme.
 
