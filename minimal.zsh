@@ -132,17 +132,17 @@ function mnml_uhp {
     if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ];then
       local _hc="%F{202}"
     else
-      local _hc="%F{84}"
+      local _hc="%F{82}"
     fi
 
     if [ $UID -eq 0 ];then
       local _uc="%F{196}"
     else
-      local _uc="%F{84}"
+      local _uc="%F{82}"
     fi
     local _w="%{\e[0m%}"
     local _g="%{\e[38;5;244m%}"
-    local _se="%F{99}"
+    local _se="%F{200}"
     local cwd="%~"
     cwd="${(%)cwd}"
 
