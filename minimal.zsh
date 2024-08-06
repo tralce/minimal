@@ -130,7 +130,7 @@ function mnml_hg_no_color {
 
 function mnml_uhp {
     if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ];then
-      local _hc="%F{202}"
+      local _hc="%F{214}"
     else
       local _hc="%F{82}"
     fi
@@ -142,7 +142,7 @@ function mnml_uhp {
     fi
     local _w="%{\e[0m%}"
     local _g="%{\e[38;5;244m%}"
-    local _se="%F{200}"
+    local _se="%F{199}"
     local cwd="%~"
     cwd="${(%)cwd}"
 
