@@ -2,6 +2,12 @@
 MNML_OK_COLOR="${MNML_OK_COLOR:-2}"
 MNML_ERR_COLOR="${MNML_ERR_COLOR:-1}"
 
+MNML_USER_COLOR="${MNML_USER_COLOR:-84}"
+MNML_ROOT_COLOR="${MNML_ROOT_COLOR:-196}"
+MNML_HOST_COLOR="${MNML_HOST_COLOR:-84}"
+MNML_HOST_SSH_COLOR="${MNML_HOST_SSH_COLOR:-214}"
+MNML_SEP_COLOR="${MNML_SEP_COLOR:-199}"
+
 MNML_USER_CHAR="${MNML_USER_CHAR:-λ}"
 MNML_INSERT_CHAR="%F{197}${MNML_INSERT_CHAR:-›}"
 MNML_NORMAL_CHAR="${MNML_NORMAL_CHAR:-·}"
@@ -13,7 +19,6 @@ MNML_BGJOB_MODE=${MNML_BGJOB_MODE:-4}
 [ "${+MNML_INFOLN}" -eq 0 ] && MNML_INFOLN=(mnml_err mnml_jobs mnml_uhp mnml_files)
 
 [ "${+MNML_MAGICENTER}" -eq 0 ] && MNML_MAGICENTER=(mnml_me_dirs mnml_me_ls mnml_me_git)
-
 
 # Components
 
@@ -130,19 +135,20 @@ function mnml_hg_no_color {
 
 function mnml_uhp {
     if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ];then
-      local _hc="%F{214}"
+      local _hc="%F{$MNML_HOST_SSH_COLOR}"
     else
-      local _hc="%F{84}"
+      local _hc="%F{$MNML_HOST_COLOR}"
     fi
 
     if [ $UID -eq 0 ];then
-      local _uc="%F{196}"
+      local _uc="%F{$MNML_ROOT_COLOR}"
     else
-      local _uc="%F{84}"
+      local _uc="%F{$MNML_USER_COLOR}"
     fi
+
     local _w="%{\e[0m%}"
     local _g="%{\e[38;5;244m%}"
-    local _se="%F{199}"
+    local _se="%F{$MNML_SEP_COLOR}"
     local cwd="%~"
     cwd="${(%)cwd}"
 
